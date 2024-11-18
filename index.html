@@ -197,7 +197,7 @@
         </div>
         <div class="field-body file has-name is-right is-fullwidth">
             <div class="file-label">
-                <input id="cFile" class="file-input is-clickable" type="file" accept="image/jpeg,image/png,image/gif"/>
+                <input id="cFile" class="file-input is-clickable" type="file" accept="image/*"/>
                 <span class="file-cta has-background-white">
                     <span class="file-icon m-0"><i class="fas fa-upload"></i></span>
                 </span>
@@ -314,26 +314,11 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Type:</label>
-        </div>
-        <div class="field-body">
-            <div class="select is-fullwidth">
-                <select id="nftType">
-                    <option value="" selected=""></option>
-                    <option value="image/png">image/jpg</option>
-                    <option value="image/png">image/png</option>
-                    <option value="image/gif">image/gif</option>
-                </select>   
-            </div>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
             <label class="label">Image:</label>
         </div>
         <div class="field-body file has-name is-right is-fullwidth">
             <div class="file-label">
-                <input id="nftFile" class="file-input is-clickable" type="file" accept="image/jpeg,image/png,image/gif"/>
+                <input id="nftFile" class="file-input is-clickable" type="file"/>
                 <span class="file-cta has-background-white">
                     <span class="file-icon m-0"><i class="fas fa-upload"></i></span>
                 </span>
@@ -341,10 +326,27 @@
             </div>
         </div>        
     </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">MIME type:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftType" class="input" type="text" placeholder="MIME type ..."/>
+        </div>
+    </div>
+
     <script>
         const nftFileInput = document.getElementById("nftFile");
+        const nftFileName = document.getElementById("nftFileName");
+        const nftType = document.getElementById("nftType");
         nftFileInput.onchange = () => {
-            document.getElementById("nftFileName").value = (nftFileInput.files.length > 0 ? nftFileInput.files[0].name : "");
+            if (nftFileInput.files.length > 0) {
+                nftFileName.value = nftFileInput.files[0].name;
+                nftType.value = nftFileInput.files[0].type;
+            } else {
+                nftFileName.value = "";
+                nftType.value = "";
+            }
         };
     </script>
 </div>
