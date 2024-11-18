@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>NFTez</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--<link rel="stylesheet" href="./css/bulma.min.css"/>-->
+    <!--<link rel="stylesheet" href="./css/animate.min.css"/>-->
+    <!--<link rel="stylesheet" href="./css/fontawesome.all.min.css"/>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"/>
+
+    <!--<script src="./js/bulma-toast.min.js"></script>-->
+    <!--<script src="./js/walletbeacon-2.3.13.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bulma-toast@2.4.2/dist/bulma-toast.min.js"></script>
+    <script src="https://unpkg.com/@airgap/beacon-sdk@2.3.13/dist/walletbeacon.min.js"></script>
+
+    
+    <style>
+        .is-collapsible {
+            height: auto;
+            max-height: 0;
+            overflow-y: hidden;
+            transition: max-height 0.2s ease;
+        }
+        .is-collapsible.is-active {
+            max-height: 1200px !important;
+        }
+
+        .faq {
+            border: 1px solid grey;
+            border-radius: 10px;
+            padding: 0.25rem;
+        }
+        .faq-body {
+            border: 0;
+        }
+
+
+
+    </style>
+
+    <script>
+        const GRAY_RECT = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAMSURBVBhXYzh8+DAABJYCSsTDBsYAAAAASUVORK5CYII=";
+    </script>
+    
+</head>
+
+<body>
+    
+<div class="container">
+<nav class="navbar has-background-white-ter" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand ml-0 mr-5">
+        <div class="navbar-item">
+            <p class="title has-text-black is-3 is-unselectable">NFTez<sup id="titleNetwork" class="has-text-grey-dark has-text-weight-light is-size-6">&nbsp;mainnet</sup></p>
+        </div>
+        <div id="btnBurger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarMenu"
+             onclick="this.classList.toggle('is-active'); document.getElementById('navbarMenu').classList.toggle('is-active');">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </div>
+    </div>
+    <div id="navbarMenu" class="navbar-menu mx-0 has-background-white-ter has-text-weight-semibold">
+        <div class="navbar-end ">
+            <div id="divConnect" class="navbar-item has-text-centered py-1">
+                <button id="btnConnect" class="button has-background-white-ter has-text-weight-semibold">Connect wallet</button>
+            </div>
+            <div id="divDisconnect" class="navbar-item has-dropdown is-hoverable is-hidden">
+                <a class="navbar-link has-text-weight-semibold">
+                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                    <span id="aAddress"></span>
+                </a>
+                <div id="divUserMenu" class="navbar-dropdown has-background-white-ter is-right">
+                    <a id="btnCopyAddress" class="navbar-item">
+                        <span class="icon pr-2"><i class="fa-regular fa-copy"></i></span>
+                        <span>Copy address</span>
+                    </a>
+                    <hr class="navbar-divider has-background-grey-lighter"/>
+                    <a id="btnDisconnect" class="navbar-item">
+                        <span class="icon"><i class="fas fa-arrow-right-from-bracket"></i></span>
+                        <span>Disconnect</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+</div>
+
+
+<div id="content" class="container">
+
+    
+<div id="contentCollections" class="mt-5 is-hidden js-page">
+    <div class="level p-3">
+        <div class="level-item is-justify-content-start">
+            <h2 class="title is-3">Collections</h2>
+        </div>
+        <div class="buttons">
+            <button id="btnNewCollection" class="button has-background-white-ter has-text-weight-semibold">New collection</button>
+        </div>
+    </div>
+    <div id="dCollections" class="">
+
+    </div>
+</div>
+
+    
+<div id="contentCollection" class="mt-5 is-hidden js-page">
+    <div class="level p-3">
+        <div class="level-item is-justify-content-start">
+            <h2 class="title is-3">New collection</h2>
+        </div>
+        <div class="buttons">
+            <button id="btnNewCollectionCreate" class="button has-background-white-ter has-text-weight-semibold">Create</button>
+            <button id="btnNewCollectionCancel" class="button has-text-weight-semibold">Cancel</button>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Name:</label>
+        </div>
+        <div class="field-body">
+            <input id="cName" class="input" type="text" placeholder="Collection name ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Description:</label>
+        </div>
+        <div class="field-body">
+            <input id="cDescription" class="input" type="text" placeholder="Description ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Symbol:</label>
+        </div>
+        <div class="field-body">
+            <input id="cSymbol" class="input" type="text" placeholder="Symbol ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Category:</label>
+        </div>
+        <div class="field-body">
+            <div class="select is-fullwidth">
+                <select id="cType">
+                    <option value="" selected=""></option>
+                    <option value="art">Art</option>
+                    <option value="collectible">Collectible</option>
+                    <option value="other">Other</option>
+                </select>   
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Authors:</label>
+        </div>
+        <div class="field-body">
+            <input id="cAuthors" class="input" type="text" placeholder="Author One, Author Two, ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Addresses:</label>
+        </div>
+        <div class="field-body">
+            <input id="cAddresses" class="input" type="text" placeholder="Author One address, Author Two address, ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Creators:</label>
+        </div>
+        <div class="field-body">
+            <input id="cCreators" class="input" type="text" placeholder="Creator One address, Creator Two address, ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Interfaces:</label>
+        </div>
+        <div class="field-body">
+            <input id="cInterfaces" class="input" type="text" placeholder="Interfaces ..." value="TZIP-012, TZIP-016"/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Logo:</label>
+        </div>
+        <div class="field-body file has-name is-right is-fullwidth">
+            <div class="file-label">
+                <input id="cFile" class="file-input is-clickable" type="file" accept="image/jpeg,image/png,image/gif"/>
+                <span class="file-cta has-background-white">
+                    <span class="file-icon m-0"><i class="fas fa-upload"></i></span>
+                </span>
+                <input id="cFileName" class="input file-name" type="text" placeholder="Select an image ..."/>
+            </div>
+        </div>        
+    </div>
+    <script>
+        const fileInput = document.getElementById("cFile");
+        fileInput.onchange = () => {
+            document.getElementById("cFileName").value = (fileInput.files.length > 0 ? fileInput.files[0].name : "");
+        };
+    </script>
+</div>
+
+
+<div id="contentNFTs" class="mt-5 is-hidden js-page">
+    <div class="level p-3">
+        <div class="level-item is-justify-content-start">
+            <h2 class="title is-3">NFTs</h2>
+        </div>
+        <div class="buttons">
+            <button id="bthNewNFT" class="button has-background-white-ter has-text-weight-semibold">New NFT</button>
+            <button id="btnNFTsCancel" class="button has-text-weight-semibold">Cancel</button>
+        </div>
+    </div>
+    <div id="dNFTs" class="">
+    
+    </div>
+</div>
+
+
+<div id="contentNFT" class="mt-5 is-hidden js-page">
+    <div class="level p-3">
+        <div class="level-item is-justify-content-start">
+            <h2 class="title is-3">New on-chain NFT</h2>
+        </div>
+        <div class="buttons">
+            <button id="btnNewNFTCreate" class="button has-background-white-ter has-text-weight-semibold">Create</button>
+            <button id="btnNewNFTCancel" class="button has-text-weight-semibold">Cancel</button>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Name:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftName" class="input" type="text" placeholder="NFT name ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Description:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftDescription" class="input" type="text" placeholder="Description ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Tags:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftTags" class="input" type="text" placeholder="Tags ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Authors:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftAuthors" class="input" type="text" placeholder="Author One, Author Two, ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Addresses:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftAddresses" class="input" type="text" placeholder="Author One address, Author Two address, ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Creators:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftCreators" class="input" type="text" placeholder="Creator One address, Creator Two address, ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Rights:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftRights" class="input" type="text" placeholder="License ..." value="No License / All Rights Reserved"/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Decimals:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftDecimals" class="input" type="text" disabled="" value="0"/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Royalties:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftRoyalties" class="input" type="text" disabled="" placeholder="Royalties ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Type:</label>
+        </div>
+        <div class="field-body">
+            <div class="select is-fullwidth">
+                <select id="nftType">
+                    <option value="" selected=""></option>
+                    <option value="image/png">image/jpg</option>
+                    <option value="image/png">image/png</option>
+                    <option value="image/gif">image/gif</option>
+                </select>   
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Image:</label>
+        </div>
+        <div class="field-body file has-name is-right is-fullwidth">
+            <div class="file-label">
+                <input id="nftFile" class="file-input is-clickable" type="file" accept="image/jpeg,image/png,image/gif"/>
+                <span class="file-cta has-background-white">
+                    <span class="file-icon m-0"><i class="fas fa-upload"></i></span>
+                </span>
+                <input id="nftFileName" class="input file-name" type="text" placeholder="Select an image ..."/>
+            </div>
+        </div>        
+    </div>
+    <script>
+        const nftFileInput = document.getElementById("nftFile");
+        nftFileInput.onchange = () => {
+            document.getElementById("nftFileName").value = (nftFileInput.files.length > 0 ? nftFileInput.files[0].name : "");
+        };
+    </script>
+</div>
+
+
+<div id="contentInfo" class="p-3 is-hidden js-page">
+    <div class="level is-mobile">
+        <div class="level-item is-justify-content-start is-pulled-left">
+            <h2 class="title is-2">Info</h2>
+        </div>
+        <div class="level-item is-justify-content-end is-pulled-right">
+            <span class="icon is-size-5 is-clickable" onclick="window.open('https://github.com/opdev3/LendTez', '_blank');">
+                <i class="fa-brands fa-github"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="is-fullwidth">
+    
+    <article class="message has-background-white faq">
+        <div class="js-faq-item message-header is-clickable has-text-black has-background-white">
+            <p>What is NFTez?</p>
+            <span class="icon"><i class="fas fa-angle-up" aria-hidden="true"></i></span>
+        </div>
+        <div class="is-collapsible">
+            <div class="message-body has-background-white faq-body">
+                <p>NFTez is an open-source decentralised on-chain NFT builder on Tezos.</p>
+            </div>
+        </div>
+    </article>
+    
+    <article class="message has-background-white faq">
+        <div class="js-faq-item message-header is-clickable has-text-black has-background-white">
+            <p>What's the cost?</p>
+            <span class="icon"><i class="fas fa-angle-up" aria-hidden="true"></i></span>
+        </div>
+        <div class="is-collapsible">
+            <div class="message-body has-background-white faq-body">
+                <p>Interacting with the protocol requires transactions and so transaction fees for Tezos Blockchain usage, which depend on the network status and transaction complexity. <span class="has-text-weight-semibold">There are no additional fees or Service Fees other than the network transaction cost.</span></p>
+            </div>
+        </div>
+    </article>
+
+    </div>
+
+    <footer class="footer has-background-success-light mt-5 py-3">
+        <div class="content has-text-centered">
+            <p>Data provided by <a href="https://tzkt.io/">TzKT</a> API</p>
+        </div>
+    </footer>
+</div>
+
+
+</div>
+
+
+<template id="t-collection">
+    <div class="px-3 py-4 m-0" style="border-top: 2px solid #f5f5f5;">
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-128x128 js-collection-item">
+                    <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <span class="has-text-weight-semibold js-name js-collection-item"></span>
+                </div>
+                <div class="content">
+                    <span class="js-description"></span>
+                </div>
+                <div class="content is-small">
+                    Items:&nbsp;<span class="js-count has-text-weight-semibold"></span>
+                </div>
+                <div class="content is-small">
+                    <span class="js-address"></span>
+                </div>
+                <div class="content is-small">
+                    <span class="js-date"></span>
+                </div>
+            </div>
+        </article>
+    </div>
+</template>
+
+
+<template id="t-nft">
+    <div class="px-3 py-4 m-0" style="border-top: 2px solid #f5f5f5;">
+        <article class="media">
+            <figure class="media-left"><p class="image is-128x128">
+                    <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
+                </p></figure>
+            <div class="media-content">
+                <div class="content">
+                    <span class="js-name has-text-weight-semibold"></span>
+                </div>
+                <div class="content">
+                    <span class="js-description"></span>
+                </div>
+                <div class="content is-small">
+                    <span class="js-address"></span>
+                </div>
+                <div class="content is-small">
+                    <span class="js-date"></span>
+                </div>
+            </div>
+        </article>
+    </div>
+</template>
+   
+    
+<script type="module" src="./index.js"></script>
+
+</body>
+</html>
