@@ -118,8 +118,8 @@
 
 <div id="content" class="container">
 
-<div id="contentCollections" class="mt-5 is-hidden js-page">
-    <div class="level p-3">
+<div id="contentCollections" class="mt-5 p-3 is-hidden js-page">
+    <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">Collections</h2>
         </div>
@@ -140,8 +140,8 @@
 </div>
 
     
-<div id="contentNewCollection" class="mt-5 is-hidden js-page">
-    <div class="level p-3">
+<div id="contentNewCollection" class="mt-5 p-3 is-hidden js-page">
+    <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">New collection</h2>
         </div>
@@ -164,14 +164,6 @@
         </div>
         <div class="field-body">
             <input id="cDescription" class="input" type="text" placeholder="Description ..."/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Symbol:</label>
-        </div>
-        <div class="field-body">
-            <input id="cSymbol" class="input" type="text" placeholder="Symbol ..."/>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -207,22 +199,6 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Interfaces:</label>
-        </div>
-        <div class="field-body">
-            <input id="cInterfaces" class="input" type="text" placeholder="Interfaces ..." value="TZIP-012, TZIP-016"/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Creators:</label>
-        </div>
-        <div class="field-body">
-            <input id="cCreators" class="input" type="text" disabled="" placeholder="Creator One address, Creator Two address, ..."/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
             <label class="label">Logo:</label>
         </div>
         <div class="field-body file has-name is-right is-fullwidth">
@@ -234,18 +210,42 @@
                 <input id="cFileName" class="input file-name" type="text" placeholder="Select an image ..."/>
             </div>
         </div>        
+        <script>
+            const fileInput = document.getElementById("cFile");
+            fileInput.onchange = () => {
+                document.getElementById("cFileName").value = (fileInput.files.length > 0 ? fileInput.files[0].name : "");
+            };
+        </script>
     </div>
-    <script>
-        const fileInput = document.getElementById("cFile");
-        fileInput.onchange = () => {
-            document.getElementById("cFileName").value = (fileInput.files.length > 0 ? fileInput.files[0].name : "");
-        };
-    </script>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Symbol:</label>
+        </div>
+        <div class="field-body">
+            <input id="cSymbol" class="input" type="text" disabled="" placeholder="Symbol ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Interfaces:</label>
+        </div>
+        <div class="field-body">
+            <input id="cInterfaces" class="input" type="text" disabled="" placeholder="Interfaces ..." value="TZIP-012, TZIP-016"/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Creators:</label>
+        </div>
+        <div class="field-body">
+            <input id="cCreators" class="input" type="text" disabled="" placeholder="Creator One address, Creator Two address, ..."/>
+        </div>
+    </div>
 </div>
 
 
-<div id="contentTokens" class="mt-5 is-hidden js-page">
-    <div class="level p-3">
+<div id="contentTokens" class="mt-5 p-3 is-hidden js-page">
+    <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">Tokens</h2>
         </div>
@@ -263,8 +263,8 @@
 </div>
 
 
-<div id="contentNewToken" class="mt-5 is-hidden js-page">
-    <div class="level p-3">
+<div id="contentNewToken" class="mt-5 p-3 is-hidden js-page">
+    <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">New on-chain NFT</h2>
         </div>
@@ -315,34 +315,19 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
+            <label class="label">Royalties:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftRoyalties" class="input" type="number" min="0" max="25" step="0.1" value="0"
+                   onchange="this.value=parseFloat(this.value<0?0:(this.value>25?25:this.value)).toFixed(1)"/>&nbsp;%
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
             <label class="label">Creators:</label>
         </div>
         <div class="field-body">
             <input id="nftCreators" class="input" type="text" placeholder="Creator One address, Creator Two address, ..."/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Royalties:</label>
-        </div>
-        <div class="field-body">
-            <input id="nftRoyalties" class="input" type="text" disabled="" placeholder="Royalties ..."/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Rights:</label>
-        </div>
-        <div class="field-body">
-            <input id="nftRights" class="input" type="text" placeholder="License ..." value="No License / All Rights Reserved"/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Decimals:</label>
-        </div>
-        <div class="field-body">
-            <input id="nftDecimals" class="input" type="text" disabled="" value="0"/>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -366,27 +351,42 @@
         <div class="field-body">
             <input id="nftType" class="input" type="text" placeholder="MIME type ..."/>
         </div>
+        <script>
+            const nftFileInput = document.getElementById("nftFile");
+            const nftFileName = document.getElementById("nftFileName");
+            const nftType = document.getElementById("nftType");
+            nftFileInput.onchange = () => {
+                if (nftFileInput.files.length > 0) {
+                    nftFileName.value = nftFileInput.files[0].name;
+                    nftType.value = nftFileInput.files[0].type;
+                } else {
+                    nftFileName.value = "";
+                    nftType.value = "";
+                }
+            };
+        </script>
     </div>
-
-    <script>
-        const nftFileInput = document.getElementById("nftFile");
-        const nftFileName = document.getElementById("nftFileName");
-        const nftType = document.getElementById("nftType");
-        nftFileInput.onchange = () => {
-            if (nftFileInput.files.length > 0) {
-                nftFileName.value = nftFileInput.files[0].name;
-                nftType.value = nftFileInput.files[0].type;
-            } else {
-                nftFileName.value = "";
-                nftType.value = "";
-            }
-        };
-    </script>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Rights:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftRights" class="input" type="text" placeholder="License ..." value="No License / All Rights Reserved"/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Decimals:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftDecimals" class="input" type="text" disabled="" value="0"/>
+        </div>
+    </div>
 </div>
 
 
-<div id="contentToken" class="mt-5 is-hidden js-page">
-    <div class="level p-3">
+<div id="contentToken" class="mt-5 p-3 is-hidden js-page">
+    <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">Token</h2>
         </div>
@@ -396,7 +396,7 @@
             <button id="btnTokenCancel" class="button has-text-weight-semibold">Cancel</button>
         </div>
     </div>
-    <article id="dToken" class="media px-3">
+    <article id="dToken" class="media py-3" style="border-top: 2px solid #f5f5f5;">
         <figure class="media-left"><p class="image is-128x128">
                 <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
             </p></figure>
@@ -488,7 +488,7 @@
 </div>    
 
 
-<div id="contentInfo" class="p-3 mt-5 is-hidden js-page">
+<div id="contentInfo" class="mt-5 p-3 is-hidden js-page">
     <div class="level is-mobile">
         <div class="level-item is-justify-content-start is-pulled-left">
             <h2 class="title is-2">Info</h2>
@@ -540,7 +540,7 @@
 
 
 <template id="t-collection">
-    <div class="px-3 py-4 m-0" style="border-top: 2px solid #f5f5f5;">
+    <div class="py-3 m-0" style="border-top: 2px solid #f5f5f5;">
         <article class="media">
             <figure class="media-left">
                 <p class="image is-128x128">
@@ -551,24 +551,24 @@
                 <div class="content mb-1">
                     <a class="js-collection-item" href=""><span class="has-text-weight-semibold js-name"></span></a>
                 </div>
-                <div class="content is-small">
-                    <span class="mr-1 js-address"></span>
-                </div>
-
                 <div class="content">
                     <span class="js-description"></span>
                 </div>
                 <div class="content is-small">
-                    Items:&nbsp;<span class="js-count has-text-weight-semibold"></span>
+                    <span class="mr-1 js-address"></span>
+                </div>
+
+                <div class="content is-small">
+                    Items:&nbsp;<span class="has-text-weight-semibold js-count"></span>
                 </div>
 <!--                <div class="content is-small">
                     <span class="js-address"></span>
                 </div>-->
-                <div class="content is-small is-hidden">
+<!--                <div class="content is-small is-hidden">
                     <span class="js-creator"></span>
-                </div>
-                <div class="content is-small">
-                    <span class="js-date"></span>
+                </div>-->
+<!--                <div class="content is-small">
+                    <span class="js-date"></span>-->
                 </div>
             </div>
         </article>
@@ -577,7 +577,7 @@
 
 
 <template id="t-token">
-    <div class="px-3 py-4 m-0" style="border-top: 2px solid #f5f5f5;">
+    <div class="py-3 m-0" style="border-top: 2px solid #f5f5f5;">
         <article class="media">
             <figure class="media-left"><p class="image is-128x128">
                     <a class="js-token-item" href=""><img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/></a>
@@ -590,11 +590,11 @@
                     <span class="js-description"></span>
                 </div>
                 <div class="content is-small">
-                    <span class="js-address"></span>
+                    Editions:&nbsp;<span class="has-text-weight-semibold js-count"></span>
                 </div>
-                <div class="content is-small">
+<!--                <div class="content is-small">
                     <span class="js-date"></span>
-                </div>
+                </div>-->
             </div>
         </article>
     </div>
