@@ -9,8 +9,9 @@
     <!--<link rel="stylesheet" href="./css/bulma.min.css"/>-->
     <!--<link rel="stylesheet" href="./css/animate.min.css"/>-->
     <!--<link rel="stylesheet" href="./css/fontawesome.all.min.css"/>-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-switch@2.0.4/dist/css/bulma-switch.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"/>
 
     <!--<script src="./js/bulma-toast.min.js"></script>-->
@@ -65,6 +66,24 @@
         </div>
     </div>
     <div id="navbarMenu" class="navbar-menu mx-0 has-background-white-ter has-text-weight-semibold">
+        <div class="navbar-start">
+            <a id="btnExplore" class="navbar-item m-1">Explore</a>
+            <a id="btnInfo" class="navbar-item m-1">Info</a>
+            <div id="divNet" class="navbar-item m-1 has-dropdown is-hoverable is-hidden">
+                <a class="navbar-link has-text-weight-semibold">
+                    <span class="icon pr-2"><i class="fa-solid fa-gear"></i></span>
+                </a>
+                <div id="divNetMenu" class="navbar-dropdown has-background-white-ter">
+                    <a id="btnNetMainnet" class="navbar-item">
+                        <span>mainnet</span>
+                    </a>
+                    <hr class="navbar-divider has-background-grey-lighter"/>
+                    <a id="btnNetGhostnet" class="navbar-item">
+                        <span>ghostnet</span>
+                    </a>
+                </div>
+            </div>
+        </div>
         <div class="navbar-end ">
             <div id="divConnect" class="navbar-item has-text-centered py-1">
                 <button id="btnConnect" class="button has-background-white-ter has-text-weight-semibold">Connect wallet</button>
@@ -78,6 +97,11 @@
                     <a id="btnCopyAddress" class="navbar-item">
                         <span class="icon pr-2"><i class="fa-regular fa-copy"></i></span>
                         <span>Copy address</span>
+                    </a>
+                    <hr class="navbar-divider has-background-grey-lighter"/>
+                    <a id="btnMyCollections" class="navbar-item">
+                        <span class="icon pr-2"><i class="fas fa-photo-video"></i></span>
+                        <span>My collections</span>
                     </a>
                     <hr class="navbar-divider has-background-grey-lighter"/>
                     <a id="btnDisconnect" class="navbar-item">
@@ -94,39 +118,35 @@
 
 <div id="content" class="container">
 
-<div id="contentIntro" class="mt-5 is-hidden js-page">
-    <section class="section">
-        <h1 class="title">On-chain NFT on Tezos</h1>
-        <!--<a class="button is-success my-5 is-medium is-rounded has-text-weight-semibold" href="app.html">Enter App</a>-->
-        <h2 class="subtitle my-5">
-            <b>NFTez</b> is an open-source, decentralised, the easiest way to create on-chain NFT on Tezos.
-        </h2>
-    </section>
-</div>
-
-    
 <div id="contentCollections" class="mt-5 is-hidden js-page">
     <div class="level p-3">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">Collections</h2>
         </div>
-        <div class="buttons">
+        <div class="buttons js-loggedin">
+            <div class="mr-5">
+                <input id="isMineCollections" type="checkbox" name="switchRoundedDefault" class="switch is-info is-rtl"/>
+                <label for="isMineCollections" class="has-text-weight-semibold">Mine</label>
+            </div>
             <button id="btnNewCollection" class="button has-background-white-ter has-text-weight-semibold">New collection</button>
         </div>
     </div>
     <div id="dCollections" class="">
 
     </div>
+    <div id="dMoreCollections" class="my-3 is-fullwidth has-text-centered is-hidden">
+        <button id="btnMoreCollections" class="button has-background-white-ter has-text-weight-semibold">... More collections ... </button>
+    </div>
 </div>
 
     
-<div id="contentCollection" class="mt-5 is-hidden js-page">
+<div id="contentNewCollection" class="mt-5 is-hidden js-page">
     <div class="level p-3">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">New collection</h2>
         </div>
         <div class="buttons">
-            <button id="btnNewCollectionCreate" class="button has-background-white-ter has-text-weight-semibold">Create</button>
+            <button id="btnNewCollectionCreate" class="button has-background-white-ter has-text-weight-semibold js-loggedin">Create</button>
             <button id="btnNewCollectionCancel" class="button has-text-weight-semibold">Cancel</button>
         </div>
     </div>
@@ -187,18 +207,18 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Creators:</label>
-        </div>
-        <div class="field-body">
-            <input id="cCreators" class="input" type="text" placeholder="Creator One address, Creator Two address, ..."/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
             <label class="label">Interfaces:</label>
         </div>
         <div class="field-body">
             <input id="cInterfaces" class="input" type="text" placeholder="Interfaces ..." value="TZIP-012, TZIP-016"/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Creators:</label>
+        </div>
+        <div class="field-body">
+            <input id="cCreators" class="input" type="text" disabled="" placeholder="Creator One address, Creator Two address, ..."/>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -224,30 +244,33 @@
 </div>
 
 
-<div id="contentNFTs" class="mt-5 is-hidden js-page">
+<div id="contentTokens" class="mt-5 is-hidden js-page">
     <div class="level p-3">
         <div class="level-item is-justify-content-start">
-            <h2 class="title is-3">NFTs</h2>
+            <h2 class="title is-3">Tokens</h2>
         </div>
         <div class="buttons">
-            <button id="bthNewNFT" class="button has-background-white-ter has-text-weight-semibold">New NFT</button>
-            <button id="btnNFTsCancel" class="button has-text-weight-semibold">Cancel</button>
+            <button id="bthNewToken" class="button has-background-white-ter has-text-weight-semibold js-loggedin">New NFT</button>
+            <button id="btnTokensCancel" class="button has-text-weight-semibold">Cancel</button>
         </div>
     </div>
-    <div id="dNFTs" class="">
+    <div id="dTokens" class="">
     
+    </div>
+    <div id="dMoreTokens" class="my-3 is-fullwidth has-text-centered is-hidden">
+        <button id="btnMoreTokens" class="button has-background-white-ter has-text-weight-semibold">... More tokens ... </button>
     </div>
 </div>
 
 
-<div id="contentNFT" class="mt-5 is-hidden js-page">
+<div id="contentNewToken" class="mt-5 is-hidden js-page">
     <div class="level p-3">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">New on-chain NFT</h2>
         </div>
         <div class="buttons">
-            <button id="btnNewNFTCreate" class="button has-background-white-ter has-text-weight-semibold">Create</button>
-            <button id="btnNewNFTCancel" class="button has-text-weight-semibold">Cancel</button>
+            <button id="btnNewTokenCreate" class="button has-background-white-ter has-text-weight-semibold js-loggedin">Create</button>
+            <button id="btnNewTokenCancel" class="button has-text-weight-semibold">Cancel</button>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -300,6 +323,14 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
+            <label class="label">Royalties:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftRoyalties" class="input" type="text" disabled="" placeholder="Royalties ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
             <label class="label">Rights:</label>
         </div>
         <div class="field-body">
@@ -312,14 +343,6 @@
         </div>
         <div class="field-body">
             <input id="nftDecimals" class="input" type="text" disabled="" value="0"/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Royalties:</label>
-        </div>
-        <div class="field-body">
-            <input id="nftRoyalties" class="input" type="text" disabled="" placeholder="Royalties ..."/>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -362,13 +385,116 @@
 </div>
 
 
-<div id="contentInfo" class="p-3 is-hidden js-page">
+<div id="contentToken" class="mt-5 is-hidden js-page">
+    <div class="level p-3">
+        <div class="level-item is-justify-content-start">
+            <h2 class="title is-3">Token</h2>
+        </div>
+        <div class="buttons">
+            <button id="btnTokenBurn" class="button has-background-white-ter has-text-weight-semibold js-loggedin">Burn</button>
+            <button id="btnTokenTransfer" class="button has-background-white-ter has-text-weight-semibold js-loggedin">Transfer</button>
+            <button id="btnTokenCancel" class="button has-text-weight-semibold">Cancel</button>
+        </div>
+    </div>
+    <article id="dToken" class="media px-3">
+        <figure class="media-left"><p class="image is-128x128">
+                <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
+            </p></figure>
+        <div class="media-content">
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Name:</label>
+                </div>
+                <div class="field-body">
+                    <span class="has-text-weight-semibold js-name"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Description:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-description"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Minted:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-firsttime"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Contract:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-contract"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Token ID:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-tokenid"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">MIME type:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-type"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Owner:</label>
+                </div>
+                <div class="field-body">
+                    <span class="icon"><i class="fa-solid fa-user"></i></span><span class="js-account"></span>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<div id="mTransferToken" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-white-ter">
+            <p class="modal-card-title">Transfer token to...</p>
+            <button id="bTransferTokenClose" class="delete" onclick="document.getElementById('mTransferToken').classList.remove('is-active');"></button>
+        </header>
+        <div class="modal-card-body">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Address:</label>
+                </div>
+                <div class="field-body">
+                    <input id="mTransferTokenAddressTo" class="input" type="text"/>
+                </div>
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-white-ter">
+            <div style="margin-left: auto">
+                <button id="btnTransferTokenTransfer" class="button has-background-white-ter has-text-weight-semibold">Transfer</button>
+                <button id="btnTransferTokenCancel" class="button has-text-weight-semibold" onclick="document.getElementById('mTransferToken').classList.remove('is-active');">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>    
+
+
+<div id="contentInfo" class="p-3 mt-5 is-hidden js-page">
     <div class="level is-mobile">
         <div class="level-item is-justify-content-start is-pulled-left">
             <h2 class="title is-2">Info</h2>
         </div>
         <div class="level-item is-justify-content-end is-pulled-right">
-            <span class="icon is-size-5 is-clickable" onclick="window.open('https://github.com/opdev3/LendTez', '_blank');">
+            <span class="icon is-size-5 is-clickable">
                 <i class="fa-brands fa-github"></i>
             </span>
         </div>
@@ -383,7 +509,7 @@
         </div>
         <div class="is-collapsible">
             <div class="message-body has-background-white faq-body">
-                <p>NFTez is an open-source decentralised on-chain NFT builder on Tezos.</p>
+                <p><b>NFTez</b> is an open-source, decentralised, and the easiest way to create on-chain NFT on Tezos.</p>
             </div>
         </div>
     </article>
@@ -395,7 +521,7 @@
         </div>
         <div class="is-collapsible">
             <div class="message-body has-background-white faq-body">
-                <p>Interacting with the protocol requires transactions and so transaction fees for Tezos Blockchain usage, which depend on the network status and transaction complexity. <span class="has-text-weight-semibold">There are no additional fees or Service Fees other than the network transaction cost.</span></p>
+                <p>Interacting with the protocol requires transactions and so transaction fees for Tezos Blockchain usage, which depend on the network status and transaction complexity. <span class="has-text-weight-semibold">There are no additional fees other than the network transaction cost.</span></p>
             </div>
         </div>
     </article>
@@ -403,7 +529,7 @@
     </div>
 
     <footer class="footer has-background-success-light mt-5 py-3">
-        <div class="content has-text-centered">
+        <div class="content is-size-7 has-text-centered">
             <p>Data provided by <a href="https://tzkt.io/">TzKT</a> API</p>
         </div>
     </footer>
@@ -417,13 +543,13 @@
     <div class="px-3 py-4 m-0" style="border-top: 2px solid #f5f5f5;">
         <article class="media">
             <figure class="media-left">
-                <p class="image is-128x128 js-collection-item">
-                    <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
+                <p class="image is-128x128">
+                    <a class="js-collection-item" href=""><img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/></a>
                 </p>
             </figure>
             <div class="media-content">
                 <div class="content mb-1">
-                    <span class="has-text-weight-semibold js-name js-collection-item"></span>
+                    <a class="js-collection-item" href=""><span class="has-text-weight-semibold js-name"></span></a>
                 </div>
                 <div class="content is-small">
                     <span class="mr-1 js-address"></span>
@@ -438,6 +564,9 @@
 <!--                <div class="content is-small">
                     <span class="js-address"></span>
                 </div>-->
+                <div class="content is-small is-hidden">
+                    <span class="js-creator"></span>
+                </div>
                 <div class="content is-small">
                     <span class="js-date"></span>
                 </div>
@@ -447,15 +576,15 @@
 </template>
 
 
-<template id="t-nft">
+<template id="t-token">
     <div class="px-3 py-4 m-0" style="border-top: 2px solid #f5f5f5;">
         <article class="media">
             <figure class="media-left"><p class="image is-128x128">
-                    <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
+                    <a class="js-token-item" href=""><img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/></a>
                 </p></figure>
             <div class="media-content">
                 <div class="content">
-                    <span class="js-name has-text-weight-semibold"></span>
+                    <a class="js-token-item" href=""><span class="has-text-weight-semibold js-name"></span></a>
                 </div>
                 <div class="content">
                     <span class="js-description"></span>
