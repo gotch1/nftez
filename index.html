@@ -299,18 +299,10 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Authors:</label>
+            <label class="label">Creators:</label>
         </div>
         <div class="field-body">
-            <input id="nftAuthors" class="input" type="text" placeholder="Author One, Author Two, ..."/>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Addresses:</label>
-        </div>
-        <div class="field-body">
-            <input id="nftAddresses" class="input" type="text" placeholder="Author One address, Author Two address, ..."/>
+            <input id="nftCreators" class="input" type="text" placeholder="Creator One address, Creator Two address, ..."/>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -320,14 +312,6 @@
         <div class="field-body">
             <input id="nftRoyalties" class="input" type="number" min="0" max="25" step="0.1" value="0"
                    onchange="this.value=parseFloat(this.value<0?0:(this.value>25?25:this.value)).toFixed(1)"/>&nbsp;%
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Creators:</label>
-        </div>
-        <div class="field-body">
-            <input id="nftCreators" class="input" type="text" placeholder="Creator One address, Creator Two address, ..."/>
         </div>
     </div>
     <div class="field is-horizontal">
