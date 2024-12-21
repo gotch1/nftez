@@ -56,7 +56,9 @@
 <nav class="navbar has-background-white-ter" role="navigation" aria-label="main navigation">
     <div class="navbar-brand ml-0 mr-5">
         <div class="navbar-item">
-            <p class="title has-text-black is-3 is-unselectable">NFTez<sup id="titleNetwork" class="has-text-grey-dark has-text-weight-light is-size-6">&nbsp;mainnet</sup></p>
+            <p class="title has-text-black is-3 is-clickable is-unselectable" onclick="window.location.search=''">NFTez
+                <sup id="titleNetwork" class="has-text-grey-dark has-text-weight-light is-size-6">&nbsp;mainnet</sup>
+            </p>
         </div>
         <div id="btnBurger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navbarMenu"
              onclick="this.classList.toggle('is-active'); document.getElementById('navbarMenu').classList.toggle('is-active');">
@@ -117,6 +119,22 @@
 
 
 <div id="content" class="container">
+
+
+<div id="contentLastTokens" class="mt-5 p-3 is-hidden js-page">
+    <div class="level">
+        <div class="level-item is-justify-content-start">
+            <h2 class="title is-3">Last active tokens</h2>
+        </div>
+    </div>
+    <div id="dLastTokens" class="">
+    
+    </div>
+<!--    <div id="dMoreLastTokens" class="my-3 is-fullwidth has-text-centered is-hidden">
+        <button id="btnMoreLastTokens" class="button has-background-white-ter has-text-weight-semibold">... More tokens ... </button>
+    </div>-->
+</div>
+
 
 <div id="contentCollections" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
@@ -250,7 +268,7 @@
             <h2 class="title is-3">Tokens</h2>
         </div>
         <div class="buttons">
-            <button id="bthNewToken" class="button has-background-white-ter has-text-weight-semibold js-loggedin">New NFT</button>
+            <button id="bthNewToken" class="button has-background-white-ter has-text-weight-semibold is-hidden js-loggedin">New NFT</button>
             <button id="btnTokensCancel" class="button has-text-weight-semibold">Cancel</button>
         </div>
     </div>
@@ -303,6 +321,15 @@
         </div>
         <div class="field-body">
             <input id="nftCreators" class="input" type="text" placeholder="Creator One address, Creator Two address, ..."/>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Editions:</label>
+        </div>
+        <div class="field-body">
+            <input id="nftEditions" class="input" type="number" min="1" max="10000" step="1" value="1"
+                   onchange="this.value=parseFloat(this.value<0?1:(this.value>10000?10000:this.value)).toFixed(0)"/>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -403,6 +430,14 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label">
+                    <label class="label">Editions:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-editions"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
                     <label class="label">Minted:</label>
                 </div>
                 <div class="field-body">
@@ -433,17 +468,45 @@
                     <span class="js-type"></span>
                 </div>
             </div>
-            <div class="field is-horizontal">
+<!--            <div class="field is-horizontal">
                 <div class="field-label">
                     <label class="label">Owner:</label>
                 </div>
                 <div class="field-body">
                     <span class="icon"><i class="fa-solid fa-user"></i></span><span class="js-account"></span>
                 </div>
-            </div>
+            </div>-->
         </div>
     </article>
 </div>
+
+<div id="mBurnToken" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-white-ter">
+            <p class="modal-card-title">Burn token</p>
+            <button id="bBurnTokenClose" class="delete" onclick="document.getElementById('mBurnToken').classList.remove('is-active');"></button>
+        </header>
+        <div class="modal-card-body">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Amount:</label>
+                </div>
+                <div class="field-body">
+                    <input id="mBurnTokenAmount" class="input" type="number" min="1" max="1" value="1"
+                           onchange="this.value = parseFloat(this.value < this.getAttribute('min') ? this.getAttribute('min') :
+                                        (this.value > this.getAttribute('max') ? this.getAttribute('max') : this.value)).toFixed(0)"/>
+                </div>
+            </div>
+        </div>
+        <footer class="modal-card-foot has-background-white-ter">
+            <div style="margin-left: auto">
+                <button id="btnBurnTokenBurn" class="button has-background-white-ter has-text-weight-semibold">Burn</button>
+                <button id="btnBurnTokenCancel" class="button has-text-weight-semibold" onclick="document.getElementById('mBurnToken').classList.remove('is-active');">Cancel</button>
+            </div>
+        </footer>
+    </div>
+</div>    
 
 <div id="mTransferToken" class="modal">
     <div class="modal-background"></div>
@@ -453,6 +516,16 @@
             <button id="bTransferTokenClose" class="delete" onclick="document.getElementById('mTransferToken').classList.remove('is-active');"></button>
         </header>
         <div class="modal-card-body">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Amount:</label>
+                </div>
+                <div class="field-body">
+                    <input id="mTransferTokenAmount" class="input" type="number" min="1" max="1" value="1"
+                           onchange="this.value = parseFloat(this.value < this.getAttribute('min') ? this.getAttribute('min') :
+                                        (this.value > this.getAttribute('max') ? this.getAttribute('max') : this.value)).toFixed(0)"/>
+                </div>
+            </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
                     <label class="label">Address:</label>
@@ -512,7 +585,7 @@
 
     </div>
 
-    <footer class="footer has-background-success-light mt-5 py-3">
+    <footer class="footer mt-5 py-3">
         <div class="content is-size-7 has-text-centered">
             <p>Data provided by <a href="https://tzkt.io/">TzKT</a> API</p>
         </div>
