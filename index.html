@@ -484,7 +484,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head has-background-white-ter">
-            <p class="modal-card-title">Burn token</p>
+            <p class="modal-card-title">Burn tokens</p>
             <button id="bBurnTokenClose" class="delete" onclick="document.getElementById('mBurnToken').classList.remove('is-active');"></button>
         </header>
         <div class="modal-card-body">
@@ -494,8 +494,8 @@
                 </div>
                 <div class="field-body">
                     <input id="mBurnTokenAmount" class="input" type="number" min="1" max="1" value="1"
-                           onchange="this.value = parseFloat(this.value < this.getAttribute('min') ? this.getAttribute('min') :
-                                        (this.value > this.getAttribute('max') ? this.getAttribute('max') : this.value)).toFixed(0)"/>
+                           onchange="this.value = parseFloat(this.value < Number(this.getAttribute('min')) ? Number(this.getAttribute('min')) :
+                                        (this.value > Number(this.getAttribute('max')) ? Number(this.getAttribute('max')) : this.value)).toFixed(0)"/>
                 </div>
             </div>
         </div>
@@ -512,7 +512,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head has-background-white-ter">
-            <p class="modal-card-title">Transfer token to...</p>
+            <p class="modal-card-title">Transfer tokens to...</p>
             <button id="bTransferTokenClose" class="delete" onclick="document.getElementById('mTransferToken').classList.remove('is-active');"></button>
         </header>
         <div class="modal-card-body">
@@ -522,8 +522,8 @@
                 </div>
                 <div class="field-body">
                     <input id="mTransferTokenAmount" class="input" type="number" min="1" max="1" value="1"
-                           onchange="this.value = parseFloat(this.value < this.getAttribute('min') ? this.getAttribute('min') :
-                                        (this.value > this.getAttribute('max') ? this.getAttribute('max') : this.value)).toFixed(0)"/>
+                           onchange="this.value = parseFloat(this.value < Number(this.getAttribute('min')) ? Number(this.getAttribute('min')) :
+                                        (this.value > Number(this.getAttribute('max')) ? Number(this.getAttribute('max')) : this.value)).toFixed(0)"/>
                 </div>
             </div>
             <div class="field is-horizontal">
@@ -658,7 +658,7 @@
 </template>
    
     
-<script type="module" src="./index.js"></script>
+<script type="module" src="./_index.js"></script>
 
 </body>
 </html>
