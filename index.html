@@ -409,8 +409,10 @@
     </div>
     <article id="dToken" class="media py-3" style="border-top: 2px solid #f5f5f5;">
         <figure class="media-left"><p class="image is-128x128">
-                <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
-            </p></figure>
+            <img class="is-hidden js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
+            <audio class="is-hidden js-audio" controls style="width: 144px;"></audio>
+            <video class="is-hidden js-video" autoplay loop controls muted></video>
+        </p></figure>
         <div class="media-content">
             <div class="field is-horizontal">
                 <div class="field-label">
@@ -446,10 +448,10 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label">
-                    <label class="label">Contract:</label>
+                    <label class="label">Collection:</label>
                 </div>
                 <div class="field-body">
-                    <span class="js-contract"></span>
+                    <a class="js-contract"></a>
                 </div>
             </div>
             <div class="field is-horizontal">
@@ -636,9 +638,15 @@
 <template id="t-token">
     <div class="py-3 m-0" style="border-top: 2px solid #f5f5f5;">
         <article class="media">
-            <figure class="media-left"><p class="image is-128x128">
-                    <a class="js-token-item" href=""><img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/></a>
-                </p></figure>
+            <figure class="media-left"><p class="image is-128x128 has-text-centered">
+                    <a class="js-token-item" href="">
+                        <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
+                        <span class="icon is-large mt-2 is-hidden js-audio"><i class="fa-solid fa-music is-size-1"></i></span>
+                        <span class="icon is-large mt-2 is-hidden js-video"><i class="fa-regular fa-circle-play is-size-1"></i></span>
+<!--                        <audio class="is-hidden js-audio" controls style="width: 144px;"></audio>-->
+<!--                        <video class="is-hidden js-video" controls muted></video>-->
+                    </a>
+            </p></figure>
             <div class="media-content">
                 <div class="content">
                     <a class="js-token-item" href=""><span class="has-text-weight-semibold js-name"></span></a>
