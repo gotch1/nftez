@@ -69,8 +69,9 @@
     </div>
     <div id="navbarMenu" class="navbar-menu mx-0 has-background-white-ter has-text-weight-semibold">
         <div class="navbar-start">
-            <a id="btnExplore" class="navbar-item m-1">Explore</a>
-            <a id="btnInfo" class="navbar-item m-1">Info</a>
+            <a id="btnMenuExplore" class="navbar-item m-1">Explore</a>
+            <a id="btnMenuSearch" class="navbar-item m-1">Search</a>
+            <a id="btnMenuInfo" class="navbar-item m-1">Info</a>
             <div id="divNet" class="navbar-item m-1 has-dropdown is-hoverable is-hidden">
                 <a class="navbar-link has-text-weight-semibold">
                     <span class="icon pr-2"><i class="fa-solid fa-gear"></i></span>
@@ -136,7 +137,7 @@
 </div>
 
 
-<div id="contentCollections" class="mt-5 p-3 is-hidden js-page">
+<div id="pageCollections" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">Collections</h2>
@@ -262,7 +263,85 @@
 </div>
 
 
-<div id="contentTokens" class="mt-5 p-3 is-hidden js-page">
+<div id="pageSearch" class="mt-5 p-3 is-hidden js-page">
+    <div class="level">
+        <div class="level-item is-justify-content-start">
+            <h2 class="title is-3">Search</h2>
+        </div>
+        <div class="buttons js-loggedin">
+            <button id="btnSearch" class="button has-background-white-ter has-text-weight-semibold">Search</button>
+        </div>
+    </div>
+    <div class="tabs is-boxed">
+        <ul>
+            <li id="searchColTab" class="is-active">
+                <a onclick='
+                    document.getElementById("searchTokTab").classList.remove("is-active");
+                    document.getElementById("searchColTab").classList.add("is-active");
+                    document.getElementById("dSearchToken").classList.add("is-hidden");
+                    document.getElementById("dSearchCollection").classList.remove("is-hidden");'>
+                    <span class="has-text-weight-semibold">Collections</span>
+                </a>
+            </li>
+            <li id="searchTokTab" class="">
+                <a onclick='
+                    document.getElementById("searchColTab").classList.remove("is-active");
+                    document.getElementById("searchTokTab").classList.add("is-active");
+                    document.getElementById("dSearchCollection").classList.add("is-hidden");
+                    document.getElementById("dSearchToken").classList.remove("is-hidden");'>
+                    <span class="has-text-weight-semibold">Tokens</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="dSearchCollection" class="">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Creator:</label>
+            </div>
+            <div class="field-body">
+                <input id="searchColCreator" class="input" type="text" placeholder="Creator address ..."/>
+            </div>
+        </div>
+    </div>
+    <div id="dSearchToken" class="is-hidden">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Name:</label>
+            </div>
+            <div class="field-body">
+                <input id="searchTokName" class="input" type="text" placeholder="Token name ..."/>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Author:</label>
+            </div>
+            <div class="field-body">
+                <input id="searchTokAuthor" class="input" type="text" placeholder="Author address ..."/>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Tag:</label>
+            </div>
+            <div class="field-body">
+                <input id="searchTokTag" class="input" type="text" placeholder="Tag ..."/>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Creator:</label>
+            </div>
+            <div class="field-body">
+                <input id="searchTokCreator" class="input" type="text" placeholder="Creator address ..."/>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+<div id="pageTokens" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">Tokens</h2>
@@ -396,7 +475,7 @@
 </div>
 
 
-<div id="contentToken" class="mt-5 p-3 is-hidden js-page">
+<div id="pageToken" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-start">
             <h2 class="title is-3">Token</h2>
@@ -547,7 +626,7 @@
 </div>    
 
 
-<div id="contentInfo" class="mt-5 p-3 is-hidden js-page">
+<div id="pageInfo" class="mt-5 p-3 is-hidden js-page">
     <div class="level is-mobile">
         <div class="level-item is-justify-content-start is-pulled-left">
             <h2 class="title is-2">Info</h2>
@@ -642,7 +721,8 @@
                     <a class="js-token-item" href="">
                         <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
                         <span class="icon is-large mt-2 is-hidden js-audio"><i class="fa-solid fa-music is-size-1"></i></span>
-                        <span class="icon is-large mt-2 is-hidden js-video"><i class="fa-regular fa-circle-play is-size-1"></i></span>
+                        <!--<span class="icon is-large mt-2 is-hidden js-video"><i class="fa-regular fa-circle-play is-size-1"></i></span>-->
+                        <span class="icon is-large mt-2 is-hidden js-video"><i class="fa-solid fa-film is-size-1"></i></span>
 <!--                        <audio class="is-hidden js-audio" controls style="width: 144px;"></audio>-->
 <!--                        <video class="is-hidden js-video" controls muted></video>-->
                     </a>
