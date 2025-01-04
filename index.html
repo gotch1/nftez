@@ -315,10 +315,10 @@
         </div>
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">Author:</label>
+                <label class="label">Creator:</label>
             </div>
             <div class="field-body">
-                <input id="searchTokAuthor" class="input" type="text" placeholder="Author address ..."/>
+                <input id="searchTokCreators" class="input" type="text" placeholder="Creator address ..."/>
             </div>
         </div>
         <div class="field is-horizontal">
@@ -326,15 +326,30 @@
                 <label class="label">Tag:</label>
             </div>
             <div class="field-body">
-                <input id="searchTokTag" class="input" type="text" placeholder="Tag ..."/>
+                <input id="searchTokTags" class="input" type="text" placeholder="Tag ..."/>
             </div>
         </div>
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">Creator:</label>
+                <label class="label">Type:</label>
             </div>
             <div class="field-body">
-                <input id="searchTokCreator" class="input" type="text" placeholder="Creator address ..."/>
+                <div class="select is-fullwidth">
+                    <select id="searchTokType">
+                        <option value="" selected="">All types</option>
+                        <option value="image">Image</option>
+                        <option value="audio">Audio</option>
+                        <option value="video">Video</option>
+                    </select>   
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Minter:</label>
+            </div>
+            <div class="field-body">
+                <input id="searchTokMinter" class="input" type="text" placeholder="Minter address ..."/>
             </div>
         </div>
     </div>
@@ -547,6 +562,14 @@
                 </div>
                 <div class="field-body">
                     <span class="js-type"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Tags:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-tags"></span>
                 </div>
             </div>
 <!--            <div class="field is-horizontal">
