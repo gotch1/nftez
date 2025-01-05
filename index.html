@@ -526,6 +526,16 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label">
+                    <label class="label">Creators:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-creators">
+                        <a class="is-hidden js-creator"><span class="icon"><i class="fa-solid fa-user"></i></span></a>
+                    </span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
                     <label class="label">Editions:</label>
                 </div>
                 <div class="field-body">
@@ -744,10 +754,7 @@
                     <a class="js-token-item" href="">
                         <img class="js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
                         <span class="icon is-large mt-2 is-hidden js-audio"><i class="fa-solid fa-music is-size-1"></i></span>
-                        <!--<span class="icon is-large mt-2 is-hidden js-video"><i class="fa-regular fa-circle-play is-size-1"></i></span>-->
                         <span class="icon is-large mt-2 is-hidden js-video"><i class="fa-solid fa-film is-size-1"></i></span>
-<!--                        <audio class="is-hidden js-audio" controls style="width: 144px;"></audio>-->
-<!--                        <video class="is-hidden js-video" controls muted></video>-->
                     </a>
             </p></figure>
             <div class="media-content">
@@ -756,6 +763,11 @@
                 </div>
                 <div class="content">
                     <span class="js-description"></span>
+                </div>
+                <div class="content">
+                    <span class="js-creators">
+                        <a class="is-hidden js-creator"><span class="icon"><i class="fa-solid fa-user"></i></span></a>
+                    </span>
                 </div>
                 <div class="content is-small">
                     Editions:&nbsp;<span class="has-text-weight-semibold js-count"></span>
