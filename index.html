@@ -428,15 +428,6 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Royalties:</label>
-        </div>
-        <div class="field-body">
-            <input id="nftRoyalties" class="input" type="number" min="0" max="25" step="0.1" value="0"
-                   onchange="this.value=parseFloat(this.value<0?0:(this.value>25?25:this.value)).toFixed(1)"/>&nbsp;%
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
             <label class="label">Image:</label>
         </div>
         <div class="field-body file has-name is-right is-fullwidth">
@@ -479,7 +470,42 @@
             <input id="nftRights" class="input" type="text" placeholder="License ..." value="No License / All Rights Reserved"/>
         </div>
     </div>
+    
     <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Royalties:</label>
+        </div>
+        <div class="field-body is-flex is-flex-wrap-wrap">
+            <div class="field is-horizontal mr-0 mb-2 is-flex is-flex-wrap-nowrap is-hidden js-royalties-line-template" style="width: 100%">
+                <input class="input js-royalties-data-value" type="number" min="0.1" max="25" step="0.1" value="0.1" style="width: 85px;"
+                    onchange="this.value = parseFloat(this.value < Number(this.getAttribute('min')) ? Number(this.getAttribute('min')) :
+                                (this.value > Number(this.getAttribute('max')) ? Number(this.getAttribute('max')) : this.value)).toFixed(1)"/>
+                <span class="ml-1 mr-3 pt-2 has-text-weight-semibold">%</span>
+                <input class="input mr-1 js-royalties-data-address" type="text" placeholder="Address ..."/>
+                <button class="button has-text-weight-semibold" onclick="this.parentNode.remove();"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+
+            <div class="field is-horizontal mr-0 mb-2 is-flex is-flex-wrap-nowrap" style="width: 100%">
+                <div>
+                    <button id="btnAddRoyaltyLine" class="button has-background-white-ter has-text-weight-semibold"><i class="fa-solid fa-plus"></i></button>
+                    <script>
+                        const jsRoyaltiesLine = document.getElementById("contentNewToken").querySelector(".js-royalties-line-template");
+                        const btnAddRoyaltyLine = document.getElementById("btnAddRoyaltyLine");
+                        btnAddRoyaltyLine.onclick = () => {
+                            let el = jsRoyaltiesLine.cloneNode(true);
+                            el.classList.remove("is-hidden");
+                            el.classList.remove("js-royalties-line-template");
+                            el.classList.add("js-royalties-line-data");
+                            jsRoyaltiesLine.before(el);
+                        }
+                    </script>
+                </div>
+                <span class="ml-5 pt-2">Total:</span>&nbsp;<span class="pt-2 has-text-weight-semibold">25%</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="field is-horizontal is-hidden">
         <div class="field-label is-normal">
             <label class="label">Decimals:</label>
         </div>
