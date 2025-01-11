@@ -486,20 +486,18 @@
             </div>
 
             <div class="field is-horizontal mr-0 mb-2 is-flex is-flex-wrap-nowrap" style="width: 100%">
-                <div>
-                    <button id="btnAddRoyaltyLine" class="button has-background-white-ter has-text-weight-semibold"><i class="fa-solid fa-plus"></i></button>
-                    <script>
-                        const jsRoyaltiesLine = document.getElementById("contentNewToken").querySelector(".js-royalties-line-template");
-                        const btnAddRoyaltyLine = document.getElementById("btnAddRoyaltyLine");
-                        btnAddRoyaltyLine.onclick = () => {
-                            let el = jsRoyaltiesLine.cloneNode(true);
-                            el.classList.remove("is-hidden");
-                            el.classList.remove("js-royalties-line-template");
-                            el.classList.add("js-royalties-line-data");
-                            jsRoyaltiesLine.before(el);
-                        }
-                    </script>
-                </div>
+                <button id="btnAddRoyaltyLine" class="button has-background-white-ter has-text-weight-semibold"><i class="fa-solid fa-plus"></i></button>
+                <script>
+                    const jsRoyaltiesLine = document.getElementById("contentNewToken").querySelector(".js-royalties-line-template");
+                    const btnAddRoyaltyLine = document.getElementById("btnAddRoyaltyLine");
+                    btnAddRoyaltyLine.onclick = () => {
+                        let el = jsRoyaltiesLine.cloneNode(true);
+                        el.classList.remove("is-hidden");
+                        el.classList.remove("js-royalties-line-template");
+                        el.classList.add("js-royalties-line-data");
+                        jsRoyaltiesLine.before(el);
+                    }
+                </script>
                 <span class="ml-5 pt-2">Total:</span>&nbsp;<span class="pt-2 has-text-weight-semibold">25%</span>
             </div>
         </div>
@@ -552,12 +550,10 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label">
-                    <label class="label">Creators:</label>
+                    <label class="label">Tags:</label>
                 </div>
                 <div class="field-body">
-                    <span class="js-creators">
-                        <a class="is-hidden js-creator"><span class="icon"><i class="fa-solid fa-user"></i></span></a>
-                    </span>
+                    <span class="tags"><a class="tag is-hidden"></a></span>
                 </div>
             </div>
             <div class="field is-horizontal">
@@ -570,26 +566,20 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label">
+                    <label class="label">Creators:</label>
+                </div>
+                <div class="field-body">
+                    <span class="js-creators">
+                        <a class="is-hidden js-creator"><span class="icon"><i class="fa-solid fa-user"></i></span></a>
+                    </span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
                     <label class="label">Minted:</label>
                 </div>
                 <div class="field-body">
                     <span class="js-firsttime"></span>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Collection:</label>
-                </div>
-                <div class="field-body">
-                    <a class="js-contract"></a>
-                </div>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label">
-                    <label class="label">Token ID:</label>
-                </div>
-                <div class="field-body">
-                    <span class="js-tokenid"></span>
                 </div>
             </div>
             <div class="field is-horizontal">
@@ -602,10 +592,18 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label">
-                    <label class="label">Tags:</label>
+                    <label class="label">Token ID:</label>
                 </div>
                 <div class="field-body">
-                    <span class="js-tags"></span>
+                    <span class="js-tokenid"></span>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label">Collection:</label>
+                </div>
+                <div class="field-body">
+                    <a class="js-contract"></a>
                 </div>
             </div>
 <!--            <div class="field is-horizontal">
