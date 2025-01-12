@@ -406,7 +406,7 @@
             <label class="label">Tags:</label>
         </div>
         <div class="field-body">
-            <input id="nftTags" class="input" type="text" placeholder="Tags ..."/>
+            <input id="nftTags" class="input" type="text" placeholder="Tag1, tag2, tag3 ..."/>
         </div>
     </div>
     <div class="field is-horizontal">
@@ -428,7 +428,7 @@
     </div>
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Image:</label>
+            <label class="label">Media:</label>
         </div>
         <div class="field-body file has-name is-right is-fullwidth">
             <div class="file-label">
@@ -436,7 +436,7 @@
                 <span class="file-cta has-background-white">
                     <span class="file-icon m-0"><i class="fas fa-upload"></i></span>
                 </span>
-                <input id="nftFileName" class="input file-name" type="text" placeholder="Select an image ..."/>
+                <input id="nftFileName" class="input file-name px-3" type="text" placeholder="Media file ..."/>
             </div>
         </div>        
     </div>
@@ -476,7 +476,7 @@
             <label class="label">Royalties:</label>
         </div>
         <div class="field-body is-flex is-flex-wrap-wrap">
-            <div class="field is-horizontal mr-0 mb-2 is-flex is-flex-wrap-nowrap is-hidden js-royalties-line-template" style="width: 100%">
+            <div class="field is-horizontal mr-0 mb-2 is-hidden is-flex is-flex-wrap-nowrap js-royalties-line-template" style="width: 100%">
                 <input class="input js-royalties-data-value" type="number" min="0.1" max="25" step="0.1" value="0.1" style="width: 85px;"
                     onchange="this.value = parseFloat(this.value < Number(this.getAttribute('min')) ? Number(this.getAttribute('min')) :
                                 (this.value > Number(this.getAttribute('max')) ? Number(this.getAttribute('max')) : this.value)).toFixed(1)"/>
