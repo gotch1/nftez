@@ -183,6 +183,11 @@
                         <span>My listings</span>
                     </a>
                     <hr class="navbar-divider has-background-grey-lighter"/>
+                    <a id="btnNewCollection" class="navbar-item">
+                        <span class="icon pr-2"><i class="fa-solid fa-plus"></i></span>
+                        <span>Create collection</span>
+                    </a>
+                    <hr class="navbar-divider has-background-grey-lighter"/>
                     <a id="btnDisconnect" class="navbar-item">
                         <span class="icon"><i class="fas fa-arrow-right-from-bracket"></i></span>
                         <span>Disconnect</span>
@@ -198,17 +203,17 @@
 <div id="content" class="container">
 
 
-<div id="contentLastTokens" class="mt-5 p-3 is-hidden js-page">
+<div id="pageActiveTokens" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-center">
             <h2 class="title is-3">Active tokens</h2>
         </div>
     </div>
-    <div id="dLastTokens" class="grid-tokens">
+    <div id="dActiveTokens" class="grid-tokens">
     
     </div>
-<!--    <div id="dMoreLastTokens" class="my-3 is-fullwidth has-text-centered is-hidden">
-        <button id="btnMoreLastTokens" class="button has-text-weight-semibold">... More tokens ... </button>
+<!--    <div id="dMoreActiveTokens" class="my-3 is-fullwidth has-text-centered is-hidden">
+        <button id="btnMoreActiveTokens" class="button has-text-weight-semibold">... More tokens ... </button>
     </div>-->
 </div>
 
@@ -218,12 +223,12 @@
         <div class="level-item is-justify-content-center">
             <h2 class="title">Collections</h2>
         </div>
-        <div class="buttons js-loggedin">
+        <div class="buttons is-hidden js-loggedin">
             <div class="mr-5 is-hidden">
                 <input id="isMineCollections" type="checkbox" name="switchRoundedDefault" class="switch is-info is-rtl"/>
                 <label for="isMineCollections" class="has-text-weight-semibold">Mine</label>
             </div>
-            <button id="btnNewCollection" class="button has-text-weight-semibold">New collection</button>
+            <!--<button id="btnNewCollection" class="button has-text-weight-semibold">New collection</button>-->
         </div>
     </div>
     <!--<div id="dCollections" class="is-flex is-flex-wrap-wrap is-justify-content-space-evenly" style="flex-basis: 250px; gap: 16px;">-->
@@ -236,7 +241,7 @@
 </div>
 
 
-<div id="contentNewCollection" class="mt-5 p-3 is-hidden js-page">
+<div id="pageNewCollection" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-center">
             <h2 class="title is-3">Create new collection</h2>
@@ -247,7 +252,7 @@
         </div>
     </div>
     
-    <div class="columns">
+    <div class="columns is-8">
     <div class="column">
         <div class="field">
             <label class="label">Name:</label>
@@ -532,7 +537,8 @@
     </div>
 </div>
 
-    
+
+
 <div id="pageTokens" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-center">
@@ -551,6 +557,7 @@
         <button id="btnMoreTokens" class="button has-text-weight-semibold">... More tokens ... </button>
     </div>
 </div>
+
 
 
 <div id="contentNewToken" class="mt-5 p-3 is-hidden js-page">
@@ -581,7 +588,7 @@
         <div class="field">
             <label class="label">Tags:</label>
             <div class="field-body">
-                <input id="nftTags" class="input" type="text" placeholder="Tag1, tag2, tag3 ..."/>
+                <input id="nftTags" class="input" type="text" placeholder="tag1, tag2, tag3 ..."/>
             </div>
         </div>
         <div class="field">
@@ -700,6 +707,7 @@
 </div>
 
 
+
 <div id="pageToken" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-center">
@@ -780,8 +788,8 @@
             <figure class="media-content is-flex is-justify-content-center">
                 <p class="image is-256x256">
                     <img class="is-hidden js-img" style="height:100%;" src="" onerror="this.src=GRAY_RECT"/>
-                    <audio class="is-hidden js-audio" controls style="width: 250px;"></audio>
-                    <video class="is-hidden js-video" autoplay loop controls muted></video>
+                    <audio class="is-hidden mt-5 js-audio" controls style="width: 250px;"></audio>
+                    <video class="is-hidden mt-5 js-video" autoplay loop controls muted></video>
                 </p>
             </figure>
         </div>
@@ -942,7 +950,7 @@
 
     </div>
 
-    <footer class="footer mt-5 py-3">
+    <footer class="footer mt-5 py-3 has-background-white">
         <div class="content is-size-7 has-text-centered">
             <p>Data provided by <a href="https://tzkt.io/">TzKT</a> API</p>
         </div>
