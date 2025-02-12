@@ -318,7 +318,7 @@
     <div class="column">
         <div class="field">
             <label class="label">Logo:</label>
-            <div class="field is-horizontal is-flex is-flex-wrap-nowrap">
+            <div class="field is-horizontal mb-1 is-flex is-flex-wrap-nowrap">
                 <div class="file has-name is-fullwidth mr-3" style="width: 100%">
                     <label class="file-label">
                         <input id="cFile" class="file-input" type="file" accept="image/*"/>
@@ -330,6 +330,9 @@
                     </label>
                 </div>
                 <button id="cFileRemove" class="button has-text-weight-semibold"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+            <div class="field is-horizontal mb-5 is-justify-content-center is-flex is-flex-wrap-nowrap">
+                <span id="cFileSize" class="is-size-7">&nbsp;</span>
             </div>
         </div>
         <div class="media is-relative">
@@ -344,19 +347,28 @@
             const fileImage = document.getElementById("cFileImage");
             fileInput.onchange = () => {
                 if (fileInput.files.length > 0) {
-                    let file = fileInput.files[0]; 
+                    let file = fileInput.files[0];
                     document.getElementById("cFileName").innerHTML = file.name;
+                    let txtSize = "0 Bytes";
+                    if (file.size > 0) {
+                        let sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+                        let i = Math.floor(Math.log(file.size) / Math.log(1024));
+                        txtSize = parseFloat((file.size / Math.pow(1024, i)).toFixed(2)) + ' ' + sizes[i];
+                    }
+                    document.getElementById("cFileSize").innerHTML = txtSize;
                     let reader = new FileReader();
                     reader.readAsDataURL(file);
                     reader.onload = readerEvent => {
                         fileImage.setAttribute("src", readerEvent.target.result);
                     };
                 } else {
+                    document.getElementById("cFileSize").innerHTML = "&nbsp;";
                     document.getElementById("cFileName").innerHTML = "Choose a file ...";
                     fileImage.setAttribute("src", "");
                 }
             };
             document.getElementById("cFileRemove").onclick = () => {
+                document.getElementById("cFileSize").innerHTML = "&nbsp;";
                 document.getElementById("cFileName").innerHTML = "Choose a file ...";
                 fileImage.setAttribute("src", "");
             };
@@ -655,7 +667,7 @@
     <div class="column">
         <div class="field">
             <label class="label">Media:</label>
-            <div class="field is-horizontal is-flex is-flex-wrap-nowrap">
+            <div class="field is-horizontal mb-1 is-flex is-flex-wrap-nowrap">
                 <div class="file has-name is-fullwidth mr-3" style="width: 100%">
                     <label class="file-label">
                         <input id="nftFile" class="file-input" type="file"/>
@@ -667,6 +679,9 @@
                     </label>
                 </div>
                 <button id="nftFileRemove" class="button has-text-weight-semibold"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+            <div class="field is-horizontal mb-5 is-justify-content-center is-flex is-flex-wrap-nowrap">
+                <span id="nftFileSize" class="is-size-7">&nbsp;</span>
             </div>
         </div>
         <div class="media is-relative">
@@ -683,17 +698,26 @@
                 if (nftInput.files.length > 0) {
                     let file = nftInput.files[0]; 
                     document.getElementById("nftFileName").innerHTML = file.name;
+                    let txtSize = "0 Bytes";
+                    if (file.size > 0) {
+                        let sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+                        let i = Math.floor(Math.log(file.size) / Math.log(1024));
+                        txtSize = parseFloat((file.size / Math.pow(1024, i)).toFixed(2)) + ' ' + sizes[i];
+                    }
+                    document.getElementById("nftFileSize").innerHTML = txtSize;
                     let reader = new FileReader();
                     reader.readAsDataURL(file);
                     reader.onload = readerEvent => {
                         nftImage.setAttribute("src", readerEvent.target.result);
                     };
                 } else {
+                    document.getElementById("nftFileSize").innerHTML = "&nbsp;";
                     document.getElementById("nftFileName").innerHTML = "Choose a file ...";
                     nftImage.setAttribute("src", "");
                 }
             };
             document.getElementById("nftFileRemove").onclick = () => {
+                document.getElementById("nftFileSize").innerHTML = "&nbsp;";
                 document.getElementById("nftFileName").innerHTML = "Choose a file ...";
                 nftImage.setAttribute("src", "");
             };
