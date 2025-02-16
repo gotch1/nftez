@@ -410,11 +410,8 @@
         <div class="level-item  is-justify-content-center">
             <h2 class="title is-3">Search</h2>
         </div>
-        <div class="buttons">
-            <button id="btnSearch" class="button has-text-weight-semibold">Search</button>
-        </div>
     </div>
-    <div class="tabs is-boxed">
+    <div class="tabs is-boxed pb-2">
         <ul>
             <li id="searchListTab" class="is-active">
                 <a onclick='
@@ -452,34 +449,34 @@
         </ul>
     </div>
     <div id="dSearchListing" class="">
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Min. price:</label>
             </div>
             <div class="field-body is-flex is-flex-wrap-nowrap">
-                <input id="searchListMinPrice" class="input" type="number" min="0"
+                <input id="searchListMinPrice" class="input" type="number" min="0" style="width: 135px;"
                        onchange="this.value = parseFloat(this.value <= Number(this.getAttribute('min')) ?
                            '' : Math.round(this.value*10**6)/10**6)"/>
                 <span class="ml-2 pt-2 has-text-weight-semibold">&#42793;</span>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Max. price:</label>
             </div>
             <div class="field-body is-flex is-flex-wrap-nowrap">
-                <input id="searchListMaxPrice" class="input" type="number" min="0"
+                <input id="searchListMaxPrice" class="input" type="number" min="0" style="width: 135px;"
                        onchange="this.value = parseFloat(this.value <= Number(this.getAttribute('min')) ?
                            '' : Math.round(this.value*10**6)/10**6)"/>
                 <span class="ml-2 pt-2 has-text-weight-semibold">&#42793;</span>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Address:</label>
             </div>
             <div class="field-body">
-                <input id="searchListAddress" class="input" type="text" placeholder="Token or collection address ..."/>
+                <input id="searchListAddress" class="input" type="text" size="35" placeholder="Token or collection address ..."/>
             </div>
         </div>
         <div class="field is-horizontal is-hidden">
@@ -492,31 +489,31 @@
         </div>
     </div>
     <div id="dSearchToken" class="is-hidden">
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Name:</label>
             </div>
             <div class="field-body">
-                <input id="searchTokName" class="input" type="text" placeholder="Token name ..."/>
+                <input id="searchTokName" class="input" type="text" size="40" placeholder="Token name ..."/>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Creator:</label>
             </div>
             <div class="field-body">
-                <input id="searchTokCreators" class="input" type="text" placeholder="Creator address ..."/>
+                <input id="searchTokCreators" class="input" type="text" size="35" placeholder="Creator address ..."/>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Tag:</label>
             </div>
             <div class="field-body">
-                <input id="searchTokTags" class="input" type="text" placeholder="Tag ..."/>
+                <input id="searchTokTags" class="input" type="text" size="30" placeholder="Tag ..."/>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Type:</label>
             </div>
@@ -531,24 +528,31 @@
                 </div>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Minter:</label>
             </div>
             <div class="field-body">
-                <input id="searchTokMinter" class="input" type="text" placeholder="Minter address ..."/>
+                <input id="searchTokMinter" class="input" type="text" size="35" placeholder="Minter address ..."/>
             </div>
+        </div>
+        <div class="field is-horizontal is-hidden">
         </div>
     </div>
     <div id="dSearchCollection" class="is-hidden">
-        <div class="field is-horizontal">
+        <div class="field is-horizontal is-justify-content-center">
             <div class="field-label is-normal">
                 <label class="label">Creator:</label>
             </div>
             <div class="field-body">
-                <input id="searchColCreator" class="input" type="text" placeholder="Creator address ..."/>
+                <input id="searchColCreator" class="input" type="text" size="35" placeholder="Creator address ..."/>
             </div>
         </div>
+        <div class="field is-horizontal is-hidden">
+        </div>
+    </div>
+    <div class="buttons p-5 is-justify-content-center">
+        <button id="btnSearch" class="button has-text-weight-semibold">Search</button>
     </div>
 </div>
 
@@ -941,11 +945,11 @@
 
 
 <div id="pageInfo" class="mt-5 p-3 is-hidden js-page">
-    <div class="level is-mobile">
-        <div class="level-item is-justify-content-start is-pulled-left">
+    <div class="level">
+        <div class="level-item is-justify-content-center">
             <h2 class="title is-2">Info</h2>
         </div>
-        <div class="level-item is-justify-content-end is-pulled-right">
+        <div class="buttons">
             <span class="icon is-size-5 is-clickable">
                 <i class="fa-brands fa-github"></i>
             </span>
@@ -973,7 +977,7 @@
         </div>
         <div class="is-collapsible">
             <div class="message-body has-background-white faq-body">
-                <p>Interacting with the protocol requires transactions and so transaction fees for Tezos Blockchain usage, which depend on the network status and transaction complexity. <span class="has-text-weight-semibold">There are no additional fees other than the network transaction cost.</span></p>
+                <p>Interacting with the application requires transactions and so transaction fees for Tezos Blockchain usage, which depend on the network status and transaction complexity. <span class="has-text-weight-semibold">There are no additional fees other than the network transaction cost.</span></p>
             </div>
         </div>
     </article>
