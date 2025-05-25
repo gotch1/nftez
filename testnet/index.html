@@ -140,7 +140,7 @@
             <div class="navbar-item m-1 has-dropdown is-hoverable">
                 <a id="btnMenuExplore" class="navbar-item is-uppercase">Explore<i class="fa-solid fa-chevron-down is-size-7 ml-1"></i></a>
                 <div class="navbar-dropdown">
-                    <a id="btnMenuTokens" class="navbar-item">NFTs</a>
+                    <a id="btnMenuTokens" class="navbar-item">Tokens</a>
                     <a id="btnMenuCollections" class="navbar-item">Collections</a>
                     <a id="btnMenuListings" class="navbar-item">Listings</a>
                 </div>
@@ -148,7 +148,7 @@
             <div class="navbar-item m-1 has-dropdown is-hoverable">
                 <a id="btnMenuCreate" class="navbar-item is-uppercase">Create<i class="fa-solid fa-chevron-down is-size-7 ml-1"></i></a>
                 <div class="navbar-dropdown">
-                    <a id="btnMenuNewToken" class="navbar-item">On-chain NFT</a>
+                    <a id="btnMenuNewToken" class="navbar-item">Token</a>
                     <a id="btnMenuNewCollection" class="navbar-item">Collection</a>
 <!--                    <hr class="navbar-divider has-background-grey-lighter"/>
                     <a id="btnMenuCollabToken" class="navbar-item">Collab Token</a>-->
@@ -194,12 +194,12 @@
                     <hr class="navbar-divider has-background-grey-lighter"/>
                     <a id="btnMenuMyTokens" class="navbar-item">
                         <span class="icon pr-2"><i class="fas fa-photo-video"></i></span>
-                        <span>My NFTs</span>
+                        <span>My tokens</span>
                     </a>
                     <hr class="navbar-divider has-background-grey-lighter"/>
                     <a id="btnMenuMyCreatedTokens" class="navbar-item">
                         <span class="icon pr-2"><i class="fas fa-images"></i></span>
-                        <span>My created NFTs</span>
+                        <span>My created tokens</span>
                     </a>
                     <a id="btnMenuMyCollections" class="navbar-item">
                         <span class="icon pr-2"><i class="fa-solid fa-folder-open"></i></span>
@@ -228,7 +228,7 @@
 <div id="pageActiveTokens" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-center">
-            <h2 class="title">Active NFTs</h2>
+            <h2 class="title">Active tokens</h2>
         </div>
     </div>
     <div id="dActiveTokensLoader" class="my-3 is-fullwidth is-flex is-justify-content-center"><span class="loader"></span></div>
@@ -236,7 +236,7 @@
     
     </div>
     <div id="dMoreActiveTokens" class="my-3 is-fullwidth has-text-centered is-hidden">
-        <button id="btnMoreActiveTokens" class="button has-text-weight-semibold">... More NFTs ...</button>
+        <button id="btnMoreActiveTokens" class="button has-text-weight-semibold">... More tokens ...</button>
     </div>
 </div>
 
@@ -414,7 +414,7 @@
                     document.getElementById("dSearchCollection").classList.add("is-hidden");
                     document.getElementById("searchTokTab").classList.add("is-active");
                     document.getElementById("dSearchToken").classList.remove("is-hidden");'>
-                    <span class="has-text-weight-semibold">NFTs</span>
+                    <span class="has-text-weight-semibold">Tokens</span>
                 </a>
             </li>
             <li id="searchColTab" class="">
@@ -566,12 +566,6 @@
                 <br/><span class="is-size-7 pt-2 pb-1 js-address copy-item"><span class="icon"><i class="fa-regular fa-copy"></i></span></span>
                 <textarea class="textarea is-small has-fixed-size mt-1 pl-0 js-description" rows="3" readonly="" style="width: 100%; border: none; box-shadow: none;"></textarea>
             </div>
-<!--            <div id="pageTokensCollectionButtons"  class="media-right is-hidden">
-                <button id="btnCollabs" class="button has-text-weight-semibold mb-3 is-small" style="width: 100%"><i class="mr-2 fa-solid fa-user-group"></i>Collab</button>
-                <br/>
-                <button id="btnEditCollection" class="button has-text-weight-semibold mb-3 is-small" style="width: 100%"><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
-                <br/><button id="btnNewTokenCollection" class="button has-text-weight-semibold is-small is-hidden" style="width: 100%">New NFT</button>
-            </div>-->
             <div id="pageTokensCollectionButtons"  class="level-right is-hidden is-flex is-flex-direction-column">
                 <button id="btnCollabs" class="button has-text-weight-semibold mb-3 is-small" style="width: 100%"><i class="mr-2 fa-solid fa-user-group"></i>Collab</button>
                 <button id="btnEditCollection" class="button has-text-weight-semibold mb-3 is-small" style="width: 100%"><i class="mr-2 fa-solid fa-pen-to-square"></i>Edit</button>
@@ -581,7 +575,7 @@
     </div>
     <div class="level">
         <div class="level-item is-justify-content-center">
-            <h2 class="title">NFTs</h2>
+            <h2 class="title">Tokens</h2>
         </div>
     </div>
     <div id="dTokensLoader" class="my-3 is-fullwidth is-flex is-justify-content-center"><span class="loader"></span></div>
@@ -663,7 +657,7 @@
         <div class="field" style="margin-top: -1.5em">
             <label class="label">Name:</label>
             <div class="field-body">
-                <input id="nftName" class="input" type="text" placeholder="NFT name ..."/>
+                <input id="nftName" class="input" type="text" placeholder="Token name ..."/>
             </div>
         </div>
         <div class="field">
@@ -815,7 +809,7 @@
 <div id="pageToken" class="mt-5 p-3 is-hidden js-page">
     <div class="level">
         <div class="level-item is-justify-content-center">
-            <h2 class="title">NFT</h2>
+            <h2 class="title">Token</h2>
         </div>
     </div>
     <div id="dToken" class="columns">
