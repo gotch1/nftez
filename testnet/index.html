@@ -365,8 +365,8 @@
             <label class="checkbox is-size-7" disabled=""><input type="checkbox" checked="" disabled="" style="min-width: 32px;"/>Save logo on-chain</label>
         </div>
         <div class="field my-5 is-flex is-justify-content-center">
-            <button id="btnCollectionDataCreate" class="button has-text-weight-semibold js-mode-create js-loggedin">Create</button>
-            <button id="btnCollectionDataSave" class="button has-text-weight-semibold js-mode-edit js-loggedin">Save</button>
+            <button id="btnCollectionDataCreate" class="button has-text-weight-semibold js-mode-create">Create</button>
+            <button id="btnCollectionDataSave" class="button has-text-weight-semibold js-mode-edit">Save</button>
         </div>
     </div>
 
@@ -802,8 +802,8 @@
             </div>
         </div>
         <div class="field my-5 is-flex is-justify-content-center">
-            <button id="btnTokenDataCreate" class="button has-text-weight-semibold js-mode-create js-loggedin">Mint</button>
-            <button id="btnTokenDataSave" class="button has-text-weight-semibold js-mode-edit js-loggedin" disabled="">Save</button>
+            <button id="btnTokenDataCreate" class="button has-text-weight-semibold js-mode-create">Mint</button>
+            <button id="btnTokenDataSave" class="button has-text-weight-semibold js-mode-edit" disabled="">Save</button>
         </div>
     </div>
 
@@ -940,7 +940,7 @@
         <figure class="media-content is-flex is-justify-content-center is-align-items-center is-align-self-center"
                 style="min-width: 256px; min-height: 256px; max-width: 512px; max-height: 512px; overflow: hidden; flex-grow: 0 !important;">
             <div class="is-hidden image is-flex is-justify-content-center is-align-items-center js-container-img"
-                    style="width: 100%; height: 100%; height: -webkit-fill-available;">
+                    style="/*width: 100%; */height: 100%; height: -webkit-fill-available;">
                 <img class="js-img" src="" alt="" onerror="this.src=GRAY_RECT" style="display: block; width: 100%; height: 100%; object-fit: scale-down;"/>
                 <object class="js-svg" style="object-fit: contain; width: 100%; height: 100%;" type="image/svg+xml" aria-label="image" data="" onerror="this.data=GRAY_RECT"></object>
             </div>
@@ -959,18 +959,20 @@
                 <br/>data file
             </div>
         </figure>
-    <div class="field my-5 is-flex is-justify-content-center" style="width: 100%;">
-        <div class="buttons">
+    <div class="field my-5 is-flex is-justify-content-center is-flex-direction-column" style="width: 100%;">
+        <div class="buttons is-justify-content-center">
             <button id="btnTokenFullscreen" class="button has-text-weight-semibold" title="Fullscreen" aria-label="Fullscreen" style="min-width: auto">
                 <i class="fa-solid fa-expand"></i>
             </button>
-            <button id="btnTokenEdit" class="button has-text-weight-semibold js-loggedin">Edit</button>
-            <button id="btnTokenList" class="button has-text-weight-semibold js-loggedin">List</button>
-            <button id="btnTokenBurn" class="button has-text-weight-semibold js-loggedin">Burn</button>
-            <button id="btnTokenTransfer" class="button has-text-weight-semibold js-loggedin">Send</button>
-            <button id="btnTokenBuy" class="button has-text-weight-semibold js-loggedin" disabled="" style="text-transform: lowercase;" aria-label="Buy">
+            <button id="btnTokenBuy" class="button has-text-weight-semibold" disabled="" style="text-transform: lowercase;" aria-label="Buy">
                 <i class="fa-solid fa-cart-shopping mr-2"></i>
             </button>
+        </div>
+        <div class="buttons is-justify-content-center">
+            <button id="btnTokenEdit" class="button has-text-weight-semibold">Edit</button>
+            <button id="btnTokenList" class="button has-text-weight-semibold">List</button>
+            <button id="btnTokenBurn" class="button has-text-weight-semibold">Burn</button>
+            <button id="btnTokenTransfer" class="button has-text-weight-semibold">Send</button>
         </div>
     </div>
     </div>
